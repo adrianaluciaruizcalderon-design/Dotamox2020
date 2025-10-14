@@ -1,0 +1,47 @@
+ <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOTAMOX 2020 S.A.S</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<script src="script.js"></script>
+<body>
+
+  <header>
+    <h1>DOTAMOX 2020 S.A.S</h1>
+  </header>
+
+  <main>
+<div class="login-container">
+  <div class="logo">
+    <img src="Dotamox.jpg" alt="Logo Dotamox 2020 S.A.S">
+  </div>
+
+      <form onsubmit="return iniciarSesion(event)">
+        <label for="usuario">USUARIO</label>
+        <input type="text" id="usuario" placeholder="Ingresa tu usuario" required>
+
+        <label for="password">CONTRASEÑA</label>
+        <input type="password" id="password" placeholder="Ingresa tu contraseña" required>
+
+        <a href="#" class="forgot">OLVIDÉ MI CONTRASEÑA</a>
+
+    <div class="buttons">
+            <button class="btn" onclick="window.location.href='menu.html'">Ingresar</button>
+            <button type="button" class="btn">CREAR USUARIO</button>
+    </div>
+
+       </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>DOTAMOX 2020<br>NIT 9013656949</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
