@@ -91,19 +91,11 @@ input {
 footer {
   background-color: #0047ff;
   color: white;
-  text-align: center; 
+  text-align: center;
   padding: 10px 0;
   font-size: 0.9rem;
 }
-
-/* menu */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
+ /* pagina principal */
 .menu-header {
   background-color: #0047ff;
   color: #fff;
@@ -139,10 +131,18 @@ footer {
 }
 
 .usuario .avatar {
-  width: 46px;
-  height: 46px;
-  background: #bdbdbd;
+  width: 50px;
+  height: 50px;
+  background-color: #bdbdbd;
+  color: white;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin: 0 auto 5px;
+  text-transform: uppercase;
 }
 
 .usuario p {
@@ -227,6 +227,7 @@ footer {
   padding: 12px 0;
   font-size: 0.9rem;
 }
+
 @media (max-width: 900px) {
   .contenido {
     flex-direction: column-reverse;
@@ -252,8 +253,8 @@ footer {
     height: 56px;
   }
 }
-/* conteo */
 
+/* ---------- CONTEO ---------- */
 .menu-header {
   background-color: #0047ff;
   color: white;
@@ -309,11 +310,25 @@ main {
   gap: 50px;
   padding: 40px;
 }
+.input-tabla {
+  width: 95%;
+  padding: 4px;
+  border: 1px solid #004cff;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+}
+.input-tabla:focus {
+  outline: none;
+  border-color: #0026ff;
+  box-shadow: 0 0 3px #004cff;
+}
+
 
 .tabla-materiales {
   border-collapse: collapse;
-  width: 900px; 
-  font-size: 1.2rem; 
+  width: 900px;
+  font-size: 1.2rem;
   text-align: center;
   border: 3px solid #0047ff;
 }
@@ -321,7 +336,7 @@ main {
 .tabla-materiales th {
   background-color: #0047ff;
   color: white;
-  padding: 18px; 
+  padding: 18px;
   border: 2px solid #0047ff;
   font-weight: bold;
   font-size: 1.1rem;
@@ -329,7 +344,206 @@ main {
 
 .tabla-materiales td {
   border: 2px solid #0047ff;
-  height: 65px; 
+  height: 65px;
+  background-color: white;
+  font-size: 1.05rem;
+}
+
+.material-lista {
+  background-color: #e6e6e6;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+  text-align: center;
+  border: 2px solid #0047ff;
+}
+
+.material-lista li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 6px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  background: #f2f2f2;
+}
+
+.material-lista button.producto-agregar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 50%;
+  border: none;
+  background: #0b5fe0;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.material-lista button.producto-agregar:hover {
+  background: #0147e6;
+  transform: scale(1.05);
+}
+
+
+.material-lista h3 {
+  background-color: #0047ff;
+  color: white;
+  margin: 0 0 15px 0;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.material-lista ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 15px 0;
+}
+
+.material-lista li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-weight: bold;
+  color: #002a80;
+}
+
+.material-lista ul li button {
+  background-color: #0047ff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.material-lista ul li button:hover {
+  background-color: #0036cc;
+}
+
+.boton-limpiar {
+  display: block;
+  background-color: #0047ff;
+  color: white;
+  border: none;
+  padding: 18px 0;
+  width: 100%;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 1rem;
+  transition: background 0.3s;
+  text-align: center;
+}
+
+.boton-limpiar:hover {
+  background-color: #0036cc;
+}
+
+/* ---------- NÓMINA ---------- */
+.menu-header {
+  background-color: #0047ff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 40px;
+}
+
+.menu-header .izquierda {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.menu-header .logo img {
+  height: 80px;
+}
+
+.menu-header h1 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.usuario {
+  text-align: center;
+}
+
+.usuario .avatar {
+  width: 50px;
+  height: 50px;
+  background-color: #b0b0b0;
+  border-radius: 50%;
+  margin: 0 auto 5px;
+}
+
+.usuario p {
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.input-tabla {
+  width: 95%;
+  padding: 4px;
+  border: 1px solid #004cff;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.input-tabla:focus {
+  outline: none;
+  border-color: #0026ff;
+  box-shadow: 0 0 3px #004cff;
+}
+
+main {
+  background-color: #fafaf5;
+  min-height: 80vh;
+  padding: 20px 40px;
+}
+
+.contenido-conteo {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 50px;
+  padding: 40px;
+}
+
+.tabla-materiales {
+  border-collapse: collapse;
+  width: 900px;
+  font-size: 1.2rem;
+  text-align: center;
+  border: 3px solid #0047ff;
+}
+
+.tabla-materiales th {
+  background-color: #0047ff;
+  color: white;
+  padding: 18px;
+  border: 2px solid #0047ff;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.tabla-materiales td {
+  border: 2px solid #0047ff;
+  height: 65px;
   background-color: white;
   font-size: 1.05rem;
 }
@@ -393,7 +607,7 @@ main {
   border: none;
   padding: 18px 0;
   width: 100%;
-  border-radius: 8px; 
+  border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   margin-top: 20px;
@@ -406,15 +620,7 @@ main {
   background-color: #0036cc;
 }
 
-footer {
-  background-color: #0047ff;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  font-size: 0.9rem;
-}
-
-/*nomina*/
+/* ---------- FABRICACIÓN ---------- */
 .menu-header {
   background-color: #0047ff;
   color: white;
@@ -456,166 +662,19 @@ footer {
   font-weight: bold;
   font-size: 0.9rem;
 }
-
-main {
-  background-color: #fafaf5;
-  min-height: 80vh;
-  padding: 20px 40px;
-}
-
-.contenido-conteo {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 50px;
-  padding: 40px;
-}
-
-.tabla-materiales {
-  border-collapse: collapse;
-  width: 900px; 
-  font-size: 1.2rem; 
+.input-tabla {
+  width: 95%;
+  padding: 4px;
+  border: 1px solid #004cff;
+  border-radius: 4px;
   text-align: center;
-  border: 3px solid #0047ff;
+  font-size: 14px;
 }
 
-.tabla-materiales th {
-  background-color: #0047ff;
-  color: white;
-  padding: 18px; 
-  border: 2px solid #0047ff;
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.tabla-materiales td {
-  border: 2px solid #0047ff;
-  height: 65px; 
-  background-color: white;
-  font-size: 1.05rem;
-}
-
-.material-lista {
-  background-color: #e6e6e6;
-  padding: 20px;
-  border-radius: 10px;
-  width: 250px;
-  text-align: center;
-  border: 2px solid #0047ff;
-}
-
-.material-lista h3 {
-  background-color: #0047ff;
-  color: white;
-  margin: 0 0 15px 0;
-  padding: 10px;
-  border-radius: 6px;
-}
-
-.material-lista ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 15px 0;
-}
-
-.material-lista li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: white;
-  padding: 10px 12px;
-  margin-bottom: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-weight: bold;
-  color: #002a80;
-}
-
-.material-lista ul li button {
-  background-color: #0047ff;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 25px;
-  height: 25px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.material-lista ul li button:hover {
-  background-color: #0036cc;
-}
-
-.boton-limpiar {
-  display: block;
-  background-color: #0047ff;
-  color: white;
-  border: none;
-  padding: 18px 0;
-  width: 100%;
-  border-radius: 8px; 
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 20px;
-  font-size: 1rem;
-  transition: background 0.3s;
-  text-align: center;
-}
-
-.boton-limpiar:hover {
-  background-color: #0036cc;
-}
-
-footer {
-  background-color: #0047ff;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  font-size: 0.9rem;
-}
-/* fabricacion */
-
-.menu-header {
-  background-color: #0047ff;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 40px;
-}
-
-.menu-header .izquierda {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.menu-header .logo img {
-  height: 80px;
-}
-
-.menu-header h1 {
-  font-size: 1.8rem;
-  margin: 0;
-}
-
-.usuario {
-  text-align: center;
-}
-
-.usuario .avatar {
-  width: 50px;
-  height: 50px;
-  background-color: #b0b0b0;
-  border-radius: 50%;
-  margin: 0 auto 5px;
-}
-
-.usuario p {
-  color: white;
-  font-weight: bold;
-  font-size: 0.9rem;
+.input-tabla:focus {
+  outline: none;
+  border-color: #0026ff;
+  box-shadow: 0 0 3px #004cff;
 }
 
 main {
@@ -634,7 +693,7 @@ main {
 
 .tabla-materiales {
   border-collapse: collapse;
-  width: 900px;  
+  width: 900px;
   font-size: 1.1rem;
   text-align: center;
   border: 3px solid #0047ff;
@@ -712,7 +771,7 @@ main {
   border: none !important;
   padding: 15px 0 18px 0 !important;
   width: 100% !important;
-  border-radius: 10px !important; 
+  border-radius: 10px !important;
   font-weight: bold !important;
   cursor: pointer !important;
   margin-top: 20px !important;
@@ -731,7 +790,11 @@ footer {
   padding: 10px;
   font-size: 0.9rem;
 }
+
+/* dispositivos */
+
 @media (max-width: 900px) {
+
   .menu-header {
     flex-direction: column;
     align-items: center;
@@ -814,4 +877,3 @@ footer {
     font-size: 0.85rem;
   }
 }
-
