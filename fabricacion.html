@@ -7,25 +7,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- Encabezado -->
   <header class="menu-header">
     <div class="izquierda">
       <div class="logo">
         <img src="Dotamox.jpg" alt="Logo Dotamox">
       </div>
-      <h1>DOTAMOX 2020 S.A.S</h1>
+      <div>
+        <h1>DOTAMOX 2020 S.A.S</h1>
+        <p>Hecho para durar, diseñado para destacar.</p>
+      </div>
     </div>
     <div class="usuario">
-      <div class="avatar"></div>
-      <p>USUARIO</p>
+      <div class="avatar" id="avatar">A</div>
+      <p id="nombre-usuario">USUARIO</p>
     </div>
   </header>
 
-  <!-- Contenido principal -->
   <main>
     <div class="contenido-conteo">
-      <!-- Tabla principal -->
+      
       <table class="tabla-materiales">
         <thead>
           <tr>
@@ -37,34 +37,144 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr id="fila-m-1">
+          <td><input type="date" class="input-tabla" id="fecha-m-1"></td>
+          <td id="material-m-1"></td>
+          <td id="valor-und-m-1"></td>
+          <td><input type="number" min="0" class="input-tabla input-cant" placeholder="0" id="cant-m-1"></td>
+          <td id="valor-total-m-1"></td>
+        </tr>
+        <tr id="fila-m-2">
+          <td><input type="date" class="input-tabla" id="fecha-m-2"></td>
+          <td id="material-m-2"></td>
+          <td id="valor-und-m-2"></td>
+          <td><input type="number" min="0" class="input-tabla input-cant" placeholder="0" id="cant-m-2"></td>
+          <td id="valor-total-m-2"></td>
+        </tr>
+        <tr id="fila-m-3">
+          <td><input type="date" class="input-tabla" id="fecha-m-3"></td>
+          <td id="material-m-3"></td>
+          <td id="valor-und-m-3"></td>
+          <td><input type="number" min="0" class="input-tabla input-cant" placeholder="0" id="cant-m-3"></td>
+          <td id="valor-total-m-3"></td>
+        </tr>
+        <tr id="fila-m-4">
+          <td><input type="date" class="input-tabla" id="fecha-m-4"></td>
+          <td id="material-m-4"></td>
+          <td id="valor-und-m-4"></td>
+          <td><input type="number" min="0" class="input-tabla input-cant" placeholder="0" id="cant-m-4"></td>
+          <td id="valor-total-m-4"></td>
+        </tr>
         </tbody>
       </table>
 
-      <!-- Lista lateral -->
       <div class="material-lista">
         <h3>MATERIAL</h3>
         <ul>
-          <li>CREMALLERA <button>+</button></li>
-          <li>ESLAIDER <button>+</button></li>
-          <li>TELA <button>+</button></li>
-          <li>MARQUILLA <button>+</button></li>
-          <li>BOTONES <button>+</button></li>
-          <li>HILOS <button>+</button></li>
-        </ul>
-        <button class="boton-limpiar">LIMPIAR</button>
+          <li>CREMALLERA <button class="material-agregar" data-material="CREMALLERA" data-valor="1500">+</button></li>
+          <li>ESLAIDER <button class="material-agregar" data-material="ESLAIDER" data-valor="250">+</button></li>
+          <li>TELA <button class="material-agregar" data-material="TELA" data-valor="12000">+</button></li>
+          <li>MARQUILLA <button class="material-agregar" data-material="MARQUILLA" data-valor="300">+</button></li>
+          <li>BOTONES <button class="material-agregar" data-material="BOTONES" data-valor="100">+</button></li>
+          <li>HILOS <button class="material-agregar" data-material="HILOS" data-valor="500">+</button></li>
+      </ul>
+      <button class="boton-limpiar">LIMPIAR</button>
       </div>
     </div>
   </main>
 
-  <!-- Pie de página -->
   <footer>
     <p>DOTAMOX 2020<br>NIT 9013656949</p>
   </footer>
 
-</body>
+<script>
+  const tablaCuerpo = document.querySelector(".tabla-materiales tbody");
+  const botonesMaterial = document.querySelectorAll(".material-lista ul li button.material-agregar");
+  const botonLimpiar = document.querySelector(".boton-limpiar");
+
+  function buscarFilaVacia() {
+    const filas = Array.from(tablaCuerpo.querySelectorAll("tr"));
+    return filas.find(fila => {
+      const celdaMaterial = fila.cells[1];
+      return !celdaMaterial || celdaMaterial.textContent.trim() === "";
+    });
+  }
+
+  botonesMaterial.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const material = btn.dataset.material || "";
+      const valorUnidad = Number(btn.dataset.valor) || 0;
+
+      let fila = buscarFilaVacia();
+
+      if (!fila) {
+        fila = document.createElement("tr");
+        fila.innerHTML = `
+          <td><input type="date" class="input-tabla"></td>
+          <td></td>
+          <td></td>
+          <td><input type="number" min="0" class="input-tabla input-cant" placeholder="0"></td>
+          <td></td>
+        `;
+        tablaCuerpo.appendChild(fila);
+      }
+
+      fila.cells[1].textContent = material;
+
+      fila.cells[2].textContent = valorUnidad ? valorUnidad.toLocaleString('es-CO') : "";
+
+      const inputFecha = fila.querySelector('input[type="date"]');
+      if (inputFecha && !inputFecha.value) {
+        const hoy = new Date();
+        const fechaISO = hoy.toISOString().split("T")[0];
+        inputFecha.value = fechaISO;
+      }
+
+      let inputCant = fila.querySelector(".input-cant");
+
+      if (!inputCant) {
+        const tdCant = fila.cells[3];
+        inputCant = document.createElement("input");
+        inputCant.type = "number";
+        inputCant.min = "0";
+        inputCant.placeholder = "0";
+        inputCant.className = "input-tabla input-cant";
+        tdCant.innerHTML = "";
+        tdCant.appendChild(inputCant);
+      } else {
+        const nuevoInput = inputCant.cloneNode(true);
+        inputCant.parentNode.replaceChild(nuevoInput, inputCant);
+        inputCant = nuevoInput;
+      }
+
+      inputCant.addEventListener("input", () => {
+        const cantidad = parseFloat(inputCant.value) || 0;
+        const total = valorUnidad * cantidad;
+        fila.cells[4].textContent = total ? total.toLocaleString('es-CO') : "";
+      });
+
+      if (inputCant.value) {
+        const cantidadInicial = parseFloat(inputCant.value) || 0;
+        const totalInicial = valorUnidad * cantidadInicial;
+        fila.cells[4].textContent = totalInicial ? totalInicial.toLocaleString('es-CO') : "";
+      }
+    });
+  });
+
+  botonLimpiar.addEventListener("click", () => {
+    const filas = Array.from(tablaCuerpo.querySelectorAll("tr"));
+    filas.forEach(fila => {
+      const inputFecha = fila.querySelector('input[type="date"]');
+      const inputCant = fila.querySelector('.input-cant');
+      if (inputFecha) inputFecha.value = "";
+      if (inputCant) inputCant.value = "";
+ 
+      if (fila.cells[1]) fila.cells[1].textContent = "";
+      if (fila.cells[2]) fila.cells[2].textContent = "";
+      if (fila.cells[4]) fila.cells[4].textContent = "";
+    });
+  });
+</script>
+
+  </body>
 </html>
