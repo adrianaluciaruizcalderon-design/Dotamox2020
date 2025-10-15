@@ -8,65 +8,155 @@
 </head>
 <body>
 
-  <!-- ENCABEZADO -->
   <header class="menu-header">
     <div class="izquierda">
       <div class="logo">
-        <img src="Dotamox.jpg" alt="Logo Dotamox">
+        <img src="Dotamox.jpg" alt="Logo Dotamox" >
       </div>
       <div>
-        <h1>DOTAMOX 2020 S.A.S</h1>
-        <p>Hecho para durar, diseñado para destacar.</p>
+        <h1 >DOTAMOX 2020 S.A.S</h1>
+        <p >Hecho para durar, diseñado para destacar.</p>
       </div>
     </div>
-    <div class="usuario">
-      <div class="avatar"></div>
-      <p>USUARIO</p>
+    <div class="usuario" >
+      <div class="avatar" id="avatar">A</div>
+      <p id="nombre-usuario">USUARIO</p>
     </div>
   </header>
 
-  <!-- CONTENIDO PRINCIPAL -->
-  <main>
-    <div class="contenido-conteo">
+<main>
+  <div class="contenido-conteo">
 
-      <!-- TABLA DE EMPLEADOS -->
-      <table class="tabla-materiales">
-        <thead>
-          <tr>
-            <th>FECHA</th>
-            <th>EMPLEADO</th>
-            <th>OPERACIÓN</th>
-            <th>CANT</th>
-            <th>VALOR UND</th>
-            <th>VALOR TOTAL</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-          <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-        </tbody>
-      </table>
+    <table class="tabla-materiales">
+      <thead>
+        <tr>
+          <th>FECHA</th>
+          <th>EMPLEADO</th>
+          <th>OPERACIÓN</th>
+          <th>CANT</th>
+          <th>VALOR UND</th>
+          <th>VALOR TOTAL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="date" class="input-tabla"></td>
+          <td><input type="text" class="input-tabla" placeholder="EMPLEADO"></td>
+          <td></td>
+          <td><input type="number" min="0" class="input-tabla input-cant" placeholder="0"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input type="date" class="input-tabla"></td>
+          <td><input type="text" class="input-tabla" placeholder="EMPLEADO"></td>
+          <td></td>
+          <td><input type="number" min="0" class="input-tabla input-cant" placeholder="0"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input type="date" class="input-tabla"></td>
+          <td><input type="text" class="input-tabla" placeholder="EMPLEADO"></td>
+          <td></td>
+          <td><input type="number" min="0" class="input-tabla input-cant" placeholder="0"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><input type="date" class="input-tabla"></td>
+          <td><input type="text" class="input-tabla" placeholder="EMPLEADO"></td>
+          <td></td>
+          <td><input type="number" min="0" class="input-tabla input-cant" placeholder="0"></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
 
-      <!-- LISTA DE EMPLEADOS -->
-      <div class="material-lista">
-        <h3>EMPLEADOS</h3>
-        <ul>
-          <li>ANGÉLICA <button>+</button></li>
-          <li>ANDRÉS <button>+</button></li>
-          <li>JUAN <button>+</button></li>
-        </ul>
-        <button class="boton-limpiar">LIMPIAR</button>
-      </div>
-
+    <div class="material-lista">
+      <h3>OPERACIÓN</h3>
+      <ul>
+        <li><span>RIBETEAR</span><button class="operacion-agregar" data-operacion="RIBETEAR" data-valor="800">+</button></li>
+        <li><span>ENCUELLAR</span><button class="operacion-agregar" data-operacion="ENCUELLAR" data-valor="200">+</button></li>
+        <li><span>TAPA</span><button class="operacion-agregar" data-operacion="TAPA" data-valor="100">+</button></li>
+        <li><span>PARCHAR</span><button class="operacion-agregar" data-operacion="PARCHAR" data-valor="800">+</button></li>
+      </ul>
+      <button class="boton-limpiar">LIMPIAR</button>
     </div>
-  </main>
 
-  <!-- PIE DE PÁGINA -->
+  </div>
+</main>
+
   <footer>
     <p>DOTAMOX 2020<br>NIT 9013656949</p>
   </footer>
+
+<script>
+  const tablaCuerpo = document.querySelector(".tabla-materiales tbody");
+  const botonesOperacion = document.querySelectorAll(".operacion-agregar");
+  const botonLimpiar = document.querySelector(".boton-limpiar");
+
+  function buscarFilaVacia() {
+    const filas = Array.from(tablaCuerpo.querySelectorAll("tr"));
+    return filas.find(fila => fila.cells[2].textContent.trim() === "");
+  }
+
+  botonesOperacion.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const operacion = btn.dataset.operacion;
+      const valorUnd = Number(btn.dataset.valor);
+
+      let fila = buscarFilaVacia();
+      if (!fila) {
+        fila = document.createElement("tr");
+        fila.innerHTML = `
+          <td><input type="date" class="input-tabla"></td>
+          <td><input type="text" class="input-tabla" placeholder="EMPLEADO"></td>
+          <td></td>
+          <td><input type="number" min="0" class="input-tabla input-cant" placeholder="0"></td>
+          <td></td>
+          <td></td>
+        `;
+        tablaCuerpo.appendChild(fila);
+      }
+
+      fila.cells[2].textContent = operacion;
+      fila.cells[4].textContent = valorUnd.toLocaleString("es-CO");
+
+      const inputFecha = fila.querySelector('input[type="date"]');
+      if (inputFecha && !inputFecha.value) {
+        const hoy = new Date();
+        inputFecha.value = hoy.toISOString().split("T")[0];
+      }
+
+      const inputCant = fila.querySelector(".input-cant");
+      const nuevoInput = inputCant.cloneNode(true);
+      inputCant.parentNode.replaceChild(nuevoInput, inputCant);
+
+      nuevoInput.addEventListener("input", () => {
+        const cantidad = parseFloat(nuevoInput.value) || 0;
+        const total = cantidad * valorUnd;
+        fila.cells[5].textContent = total.toLocaleString("es-CO");
+      });
+    });
+  });
+
+  botonLimpiar.addEventListener("click", () => {
+    const filas = tablaCuerpo.querySelectorAll("tr");
+    filas.forEach(fila => {
+      const inputFecha = fila.querySelector('input[type="date"]');
+      const inputEmp = fila.querySelector('input[type="text"]');
+      const inputCant = fila.querySelector('.input-cant');
+      if (inputFecha) inputFecha.value = "";
+      if (inputEmp) inputEmp.value = "";
+      if (inputCant) inputCant.value = "";
+      fila.cells[2].textContent = "";
+      fila.cells[4].textContent = "";
+      fila.cells[5].textContent = "";
+    });
+  });
+</script>
 
 </body>
 </html>
