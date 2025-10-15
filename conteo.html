@@ -109,24 +109,18 @@
   </footer>
 
 <script>
-  // SCRIPT: agregar productos desde los botones +, calcular totales y limpiar
 
-  // Selecciono filas de la tabla (serán las filas existentes)
   const tablaCuerpo = document.querySelector(".tabla-materiales tbody");
 
-  // Botones que agregan producto (solo los de la lista)
   const botonesProducto = document.querySelectorAll(".material-lista ul li button.producto-agregar");
 
-  // Botón limpiar
   const botonLimpiar = document.querySelector(".boton-limpiar");
 
-  // Función que busca la primera fila con PRODUCTO vacío
   function buscarFilaVacia() {
     const filas = Array.from(tablaCuerpo.querySelectorAll("tr"));
     return filas.find(fila => fila.cells[1].textContent.trim() === "");
   }
 
-  // Al hacer click en un botón de producto
   botonesProducto.forEach(btn => {
     btn.addEventListener("click", () => {
       const producto = btn.dataset.producto || "";
@@ -135,7 +129,7 @@
       let fila = buscarFilaVacia();
 
       if (!fila) {
-        // Si no hay fila vacía, crear una nueva (opcional)
+  
         fila = document.createElement("tr");
         fila.innerHTML = `
           <td><input type="date" class="input-tabla"></td>
@@ -147,12 +141,10 @@
         tablaCuerpo.appendChild(fila);
       }
 
-      // Rellenar producto y valor
       fila.cells[1].textContent = producto;
-      // Mostrar valor con separador de miles (es-CO)
+  
       fila.cells[2].textContent = valorUnidad ? valorUnidad.toLocaleString('es-CO') : "";
 
-      // Poner fecha actual si el input fecha está vacío
       const inputFecha = fila.querySelector('input[type="date"]');
       if (inputFecha && !inputFecha.value) {
         const hoy = new Date();
@@ -160,22 +152,18 @@
         inputFecha.value = fechaISO;
       }
 
-      // Obtener input de cantidad de la fila
       const inputCant = fila.querySelector(".input-cant");
 
-      // Asegurarnos de que no se duplique el listener:
-      // removemos antes y volvemos a añadir
+
       const nuevoInput = inputCant.cloneNode(true);
       inputCant.parentNode.replaceChild(nuevoInput, inputCant);
 
-      // Calcular total cuando cambie la cantidad
       nuevoInput.addEventListener("input", () => {
         const cantidad = parseFloat(nuevoInput.value) || 0;
         const total = valorUnidad * cantidad;
         fila.cells[4].textContent = total ? total.toLocaleString('es-CO') : "";
       });
 
-      // Si ya hay valor en cantidad (por ejemplo al copiar fila), calcularlo ahora
       if (nuevoInput.value) {
         const cantidadInicial = parseFloat(nuevoInput.value) || 0;
         const totalInicial = valorUnidad * cantidadInicial;
@@ -184,7 +172,6 @@
     });
   });
 
-  // Botón limpiar: borra todos los campos de la tabla
   botonLimpiar.addEventListener("click", () => {
     const filas = Array.from(tablaCuerpo.querySelectorAll("tr"));
     filas.forEach(fila => {
