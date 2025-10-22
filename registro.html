@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crear Usuario - DOTAMOX 2020 S.A.S</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>DOTAMOX 2020 S.A.S</h1>
+  </header>
+
+  <main>
+    <div class="login-container">
+      <div class="logo">
+        <img src="Dotamox.jpg" alt="Logo Dotamox 2020 S.A.S">
+      </div>
+
+      <form onsubmit="return crearUsuario(event)">
+        <h2>Crear Nuevo Usuario</h2>
+
+        <label for="nuevoUsuario">USUARIO</label>
+        <input type="text" id="nuevoUsuario" placeholder="Ingresa un nombre de usuario" required>
+
+        <label for="correo">CORREO ELECTRÓNICO</label>
+        <input type="email" id="correo" placeholder="Ingresa tu correo" required>
+
+        <label for="nuevaPassword">CONTRASEÑA</label>
+        <input type="password" id="nuevaPassword" placeholder="Crea una contraseña" required>
+
+        <label for="confirmarPassword">CONFIRMAR CONTRASEÑA</label>
+        <input type="password" id="confirmarPassword" placeholder="Repite la contraseña" required>
+
+        <div class="buttons">
+          <button type="submit" class="btn">GUARDAR</button>
+          <button type="button" class="btn" onclick="window.location.href='index.html'">CANCELAR</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>DOTAMOX 2020<br>NIT 9013656949</p>
+  </footer>
+
+  <script>
+    function crearUsuario(event) {
+      event.preventDefault(); // evita recargar la página
+
+      const usuario = document.getElementById("nuevoUsuario").value;
+      const correo = document.getElementById("correo").value;
+      const pass1 = document.getElementById("nuevaPassword").value;
+      const pass2 = document.getElementById("confirmarPassword").value;
+
+      if (pass1 !== pass2) {
+        alert("⚠️ Las contraseñas no coinciden.");
+        return false;
+      }
+
+      // Aquí puedes agregar la lógica para guardar el usuario (por ahora solo muestra mensaje)
+      alert(`✅ Usuario "${usuario}" creado correctamente.`);
+
+      // Redirige de vuelta al inicio de sesión
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
